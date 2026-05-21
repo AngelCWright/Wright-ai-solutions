@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wright AI Solutions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #1B2A4A;
+      --navy-deep: #131F38;
+      --navy-mid: #243558;
+      --rust: #C4622D;
+      --cream: #F5F0E8;
+      --cream-dark: #EAE4DA;
+      --grey: #8A8F9A;
+      --grey-light: #D8D0C4;
+      --text-body: #5A6070;
+      --text-muted: #8FA0BC;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: #FAFAF8; color: var(--text-body); }
+
+    nav { background: var(--navy); padding: 1.25rem 2.5rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+    .nav-logo { color: var(--cream); font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 500; letter-spacing: 0.5px; }
+    .nav-links { display: flex; gap: 2rem; }
+    .nav-links a { color: #B8C4D4; font-size: 14px; text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--cream); }
+
+    .hero { background: var(--navy); padding: 5rem 2.5rem 4rem; text-align: center; }
+    .hero-eyebrow { color: var(--rust); font-size: 12px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1.25rem; }
+    .hero-title { color: var(--cream); font-family: 'Cormorant Garamond', serif; font-size: 44px; font-weight: 500; line-height: 1.15; margin-bottom: 1.25rem; max-width: 640px; margin-left: auto; margin-right: auto; }
+    .hero-sub { color: #B8C4D4; font-size: 16px; line-height: 1.75; max-width: 540px; margin: 0 auto 2.5rem; }
+    .hero-cta { display: inline-block; background: var(--rust); color: var(--cream); padding: 0.85rem 2.25rem; border-radius: 5px; font-size: 15px; text-decoration: none; font-weight: 500; transition: background 0.2s; }
+    .hero-cta:hover { background: #A8521F; }
+
+    .section { padding: 4rem 2.5rem; }
+    .section-light { background: var(--cream); }
+    .section-white { background: #FAFAF8; }
+    .section-navy { background: var(--navy); }
+    .label { font-size: 11px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--rust); margin-bottom: 0.5rem; }
+    .title { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 500; color: var(--navy); margin-bottom: 0.75rem; line-height: 1.2; }
+    .title-light { color: var(--cream); }
+    .body-text { font-size: 15px; color: var(--text-body); line-height: 1.75; max-width: 580px; }
+    .divider { height: 2px; background: var(--rust); width: 36px; margin: 1rem 0; }
+    .divider-center { margin: 1rem auto; }
+
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1rem; margin-top: 2rem; }
+    .card { background: white; border: 0.5px solid var(--grey-light); border-radius: 12px; padding: 1.5rem; }
+    .card-icon { font-size: 24px; color: var(--rust); margin-bottom: 1rem; }
+    .card-title { font-size: 15px; font-weight: 500; color: var(--navy); margin-bottom: 0.4rem; }
+    .card-body { font-size: 13px; color: var(--text-body); line-height: 1.65; }
+
+    .who-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1rem; margin-top: 2rem; }
+    .who-item { display: flex; align-items: flex-start; gap: 12px; }
+    .who-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--rust); margin-top: 7px; flex-shrink: 0; }
+    .who-text { font-size: 14px; color: var(--text-body); line-height: 1.65; }
+
+    .process { display: flex; flex-direction: column; gap: 1.25rem; margin-top: 2rem; }
+    .process-step { display: flex; align-items: flex-start; gap: 1rem; }
+    .step-num { width: 34px; height: 34px; border-radius: 50%; background: var(--rust); color: var(--cream); font-size: 14px; font-weight: 500; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .step-title { font-size: 15px; font-weight: 500; color: var(--cream); margin-bottom: 0.25rem; }
+    .step-body { font-size: 13px; color: var(--text-muted); line-height: 1.65; }
+
+    .about-section { text-align: center; }
+    .avatar { width: 84px; height: 84px; border-radius: 50%; background: var(--navy-mid); border: 3px solid var(--rust); display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 500; color: var(--cream); }
+    .about-name { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 500; color: var(--navy); margin-bottom: 0.25rem; }
+    .about-role { font-size: 13px; color: var(--rust); font-weight: 500; margin-bottom: 1rem; }
+
+    .contact-section { text-align: center; background: var(--cream); padding: 4rem 2.5rem; }
+    .contact-title { font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 500; color: var(--navy); margin-bottom: 0.75rem; }
+    .contact-body { font-size: 15px; color: var(--text-body); margin-bottom: 1.75rem; max-width: 480px; margin-left: auto; margin-right: auto; }
+    .contact-email { display: inline-block; color: var(--rust); font-size: 15px; text-decoration: none; font-weight: 500; border-bottom: 1px solid var(--rust); padding-bottom: 2px; }
+
+    footer { background: var(--navy-deep); padding: 1.75rem 2.5rem; text-align: center; }
+    .footer-text { font-size: 13px; color: #4A5A74; }
+    .footer-text a { color: #4A5A74; text-decoration: none; }
+
+    @media (max-width: 600px) {
+      .hero-title { font-size: 32px; }
+      .nav-links { gap: 1rem; }
+      .title { font-size: 26px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">Wright AI Solutions</span>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <p class="hero-eyebrow">AI Strategy &amp; Solutions</p>
+  <h1 class="hero-title">Helping pediatric practices work smarter with AI</h1>
+  <p class="hero-sub">Wright AI Solutions helps independent pediatric practices identify, evaluate, and implement the right AI tools for their specific needs — so your team spends less time on admin and more time with patients.</p>
+  <a href="#contact" class="hero-cta">Schedule a free consultation</a>
+</section>
+
+<section class="section section-white" id="services">
+  <p class="label">What we do</p>
+  <h2 class="title">AI solutions built around your practice</h2>
+  <div class="divider"></div>
+  <p class="body-text">Every practice is different. We start by understanding your workflows, your EHR, and your biggest pain points — then we identify which AI tools already exist, which need to be built, and exactly how to integrate them safely and compliantly.</p>
+  <div class="cards">
+    <div class="card">
+      <div class="card-icon">&#9875;</div>
+      <p class="card-title">EHR &amp; billing integration</p>
+      <p class="card-body">AI tools that work with your existing EHR to reduce coding errors, streamline billing, and cut claim denials.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">&#128197;</div>
+      <p class="card-title">Scheduling efficiency</p>
+      <p class="card-body">Smarter scheduling tools that reduce no-shows, fill gaps, and free your front desk from repetitive tasks.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">&#128737;</div>
+      <p class="card-title">HIPAA-compliant AI</p>
+      <p class="card-body">Every recommendation we make is vetted for HIPAA compliance — so you can adopt AI with confidence, not risk.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">&#128249;</div>
+      <p class="card-title">Telehealth &amp; marketing</p>
+      <p class="card-body">AI-enhanced telehealth workflows and patient communication tools that grow your practice without growing your workload.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section-light">
+  <p class="label">Who we serve</p>
+  <h2 class="title">Built for independent pediatric practices</h2>
+  <div class="divider"></div>
+  <p class="body-text">We understand the unique pressures of running a pediatric practice. You're not a tech company — and you shouldn't have to think like one.</p>
+  <div class="who-grid">
+    <div class="who-item"><div class="who-dot"></div><p class="who-text">Independent pediatric offices overwhelmed by administrative burden</p></div>
+    <div class="who-item"><div class="who-dot"></div><p class="who-text">Practices struggling with billing, coding, and claim denials</p></div>
+    <div class="who-item"><div class="who-dot"></div><p class="who-text">Physicians curious about AI but unsure where to start safely</p></div>
+    <div class="who-item"><div class="who-dot"></div><p class="who-text">Office managers ready to modernize without disrupting their team</p></div>
+  </div>
+</section>
+
+<section class="section section-navy">
+  <p class="label">How it works</p>
+  <h2 class="title title-light">From first call to real results</h2>
+  <div class="divider"></div>
+  <div class="process">
+    <div class="process-step">
+      <div class="step-num">1</div>
+      <div>
+        <p class="step-title">Discovery call</p>
+        <p class="step-body">We learn about your practice, your EHR, your team's pain points, and where time is being lost.</p>
+      </div>
+    </div>
+    <div class="process-step">
+      <div class="step-num">2</div>
+      <div>
+        <p class="step-title">AI opportunity assessment</p>
+        <p class="step-body">We evaluate which AI tools on the market fit your needs — and identify any gaps that require a custom solution.</p>
+      </div>
+    </div>
+    <div class="process-step">
+      <div class="step-num">3</div>
+      <div>
+        <p class="step-title">Implementation</p>
+        <p class="step-body">We handle integration, configuration, and compliance review — so your team can hit the ground running.</p>
+      </div>
+    </div>
+    <div class="process-step">
+      <div class="step-num">4</div>
+      <div>
+        <p class="step-title">Training &amp; ongoing support</p>
+        <p class="step-body">We train your staff and stay engaged — so your AI investment keeps delivering value long-term.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-white about-section" id="about">
+  <p class="label">About</p>
+  <div class="avatar">AW</div>
+  <h2 class="about-name">Angel Wright</h2>
+  <p class="about-role">Founder &amp; AI Solutions Consultant</p>
+  <div class="divider divider-center"></div>
+  <p class="body-text" style="margin: 0 auto; text-align: center;">Registered Dietitian Nutritionist turned AI consultant, Angel brings a rare combination of clinical healthcare experience and cutting-edge AI expertise. She founded Wright AI Solutions to bridge the gap between complex AI technology and the real-world needs of healthcare professionals.</p>
+</section>
+
+<section class="contact-section" id="contact">
+  <h2 class="contact-title">Ready to see what AI can do for your practice?</h2>
+  <p class="contact-body">Book a free 30-minute discovery call. No tech jargon, no pressure — just a straightforward conversation about where AI can help.</p>
+  <a href="mailto:Angel.Wright@wrightaisolutions.com" class="contact-email">Angel.Wright@wrightaisolutions.com</a>
+</section>
+
+<footer>
+  <p class="footer-text">© 2026 Wright AI Solutions &nbsp;·&nbsp; Tampa, FL &nbsp;·&nbsp; <a href="#">Privacy</a></p>
+</footer>
+
+</body>
+</html>
